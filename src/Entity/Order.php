@@ -24,7 +24,7 @@ class Order
     /**
      * @ORM\Column(type="text")
      */
-    private $adress;
+    private $address;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="order")
@@ -53,26 +53,14 @@ class Order
         return $this;
     }
 
-    public function getAdress(): ?string
+    public function getAddress(): ?string
     {
-        return $this->adress;
+        return $this->address;
     }
 
-    public function setAdress(string $adress): self
+    public function setAddress(string $address): self
     {
-        $this->adress = $adress;
-
-        return $this;
-    }
-
-    public function getUserId(): ?int
-    {
-        return $this->user_id;
-    }
-
-    public function setUserId(int $user_id): self
-    {
-        $this->user_id = $user_id;
+        $this->address = $address;
 
         return $this;
     }
@@ -99,5 +87,16 @@ class Order
         $this->user = $user;
 
         return $this;
+    }
+
+    public function asArray()
+    {
+        return [
+            'id' => $this->getId(),
+            'type' => $this->getType(),
+            'shipping_cost' => $this->getShippingCost(),
+            'address' => $this->getAddress(),
+            'user' => $this->user->getName()
+        ];
     }
 }

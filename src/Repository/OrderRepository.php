@@ -30,6 +30,7 @@ class OrderRepository extends ServiceEntityRepository
 
     public function saveOrder($user,
                               $address,
+                              $shippingType,
                               $shippingCost
     ):Order
     {
@@ -38,6 +39,7 @@ class OrderRepository extends ServiceEntityRepository
         $order
             ->setUser($user)
             ->setAddress($address)
+            ->setType($shippingType)
             ->setShipping($shippingCost)
         ;
 

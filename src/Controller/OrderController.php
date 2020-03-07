@@ -8,6 +8,7 @@ use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class OrderController extends AbstractController
@@ -57,7 +58,7 @@ class OrderController extends AbstractController
         $data = json_decode($request->getContent(), true);
 
         $userId = $data['user_id'];
-        $productsList = $data['products'];
+        //$productsList = $data['products'];
         $address  = $data['address'];
         $shippingType = $data['shipping_type'];
 
@@ -73,11 +74,12 @@ class OrderController extends AbstractController
         $order = $this->orderRepository->saveOrder(
             $user,
             $address,
+            $shippingType,
             $shippingCost
         );
 
         //save all products to order_products table
 
-        return new JsonResponse(['status' => 'Product created!', 'entity' => $order->asArray()], Response::HTTP_CREATED);
+        return new JsonResponse(['status' => 'Order created!', 'entity' => $order->asArray()], Response::HTTP_CREATED);
     }
 }
