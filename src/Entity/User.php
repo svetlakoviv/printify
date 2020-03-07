@@ -32,7 +32,7 @@ class User
     private $product;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Order", mappedBy="UserId", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\PrintingOrder", mappedBy="UserId", orphanRemoval=true)
      */
     private $order;
 

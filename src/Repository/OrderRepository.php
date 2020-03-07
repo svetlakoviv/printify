@@ -2,16 +2,16 @@
 
 namespace App\Repository;
 
-use App\Entity\Order;
+use App\Entity\PrintingOrder;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\ORM\EntityManagerInterface;
 
 /**
- * @method Order|null find($id, $lockMode = null, $lockVersion = null)
- * @method Order|null findOneBy(array $criteria, array $orderBy = null)
- * @method Order[]    findAll()
- * @method Order[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method PrintingOrder|null find($id, $lockMode = null, $lockVersion = null)
+ * @method PrintingOrder|null findOneBy(array $criteria, array $orderBy = null)
+ * @method PrintingOrder[]    findAll()
+ * @method PrintingOrder[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
 class OrderRepository extends ServiceEntityRepository
 {
@@ -24,7 +24,7 @@ class OrderRepository extends ServiceEntityRepository
         ManagerRegistry $registry,
         EntityManagerInterface $manager)
     {
-        parent::__construct($registry, Order::class);
+        parent::__construct($registry, PrintingOrder::class);
         $this->manager = $manager;
     }
 
@@ -32,15 +32,15 @@ class OrderRepository extends ServiceEntityRepository
                               $address,
                               $shippingType,
                               $shippingCost
-    ):Order
+    ):PrintingOrder
     {
-        $order = new Order();
+        $order = new PrintingOrder();
 
         $order
             ->setUser($user)
             ->setAddress($address)
             ->setType($shippingType)
-            ->setShipping($shippingCost)
+            ->setShippingCost($shippingCost)
         ;
 
         $this->manager->persist($order);

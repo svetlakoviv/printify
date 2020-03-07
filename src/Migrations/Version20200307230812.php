@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20200307223540 extends AbstractMigration
+final class Version20200307230812 extends AbstractMigration
 {
     public function getDescription() : string
     {
@@ -22,9 +22,7 @@ final class Version20200307223540 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE `order` CHANGE user_id user_id INT DEFAULT NULL, CHANGE adress address LONGTEXT NOT NULL');
-        $this->addSql('ALTER TABLE `order` ADD CONSTRAINT FK_F5299398A76ED395 FOREIGN KEY (user_id) REFERENCES user (id)');
-        $this->addSql('CREATE INDEX IDX_F5299398A76ED395 ON `order` (user_id)');
+        $this->addSql('ALTER TABLE order_product ADD CONSTRAINT FK_2530ADE65095D118 FOREIGN KEY (p_order_id) REFERENCES printing_order (id)');
     }
 
     public function down(Schema $schema) : void
@@ -32,8 +30,6 @@ final class Version20200307223540 extends AbstractMigration
         // this down() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE `order` DROP FOREIGN KEY FK_F5299398A76ED395');
-        $this->addSql('DROP INDEX IDX_F5299398A76ED395 ON `order`');
-        $this->addSql('ALTER TABLE `order` CHANGE user_id user_id INT NOT NULL, CHANGE address adress LONGTEXT CHARACTER SET utf8mb4 NOT NULL COLLATE `utf8mb4_unicode_ci`');
+        $this->addSql('ALTER TABLE order_product DROP FOREIGN KEY FK_2530ADE65095D118');
     }
 }

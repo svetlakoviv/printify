@@ -23,7 +23,7 @@ class OrderProduct
     private $product;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Order")
+     * @ORM\ManyToOne(targetEntity="App\Entity\PrintingOrder")
      * @ORM\JoinColumn(nullable=false)
      */
     private $pOrder;
@@ -51,12 +51,12 @@ class OrderProduct
         return $this;
     }
 
-    public function getPOrder(): ?Order
+    public function getPOrder(): ?PrintingOrder
     {
         return $this->pOrder;
     }
 
-    public function setPOrder(?Order $pOrder): self
+    public function setPOrder(?PrintingOrder $pOrder): self
     {
         $this->pOrder = $pOrder;
 
