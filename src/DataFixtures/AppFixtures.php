@@ -16,10 +16,10 @@ class AppFixtures extends Fixture
 
         for ($i = 0; $i < 10; $i++) {
             $user = new User();
-            $user->setName($faker->name);
-            $user->setBalance($faker->randomNumber($nbDigits = 3, $strict = true));
-            $manager->persist($user);
-        }
+        $user->setName($faker->name);
+        $user->setBalance($faker->randomNumber($nbDigits = 3, $strict = true));
+        $manager->persist($user);
+    }
 
         $productTypeMug = new ProductType();
         $productTypeMug->setName('mug');

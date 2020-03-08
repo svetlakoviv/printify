@@ -14,6 +14,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 
 class OrderController extends AbstractController
@@ -71,18 +72,6 @@ class OrderController extends AbstractController
         $this->validator = $validator;
     }
 
-
-    /**
-     * @Route("/orders", name="order")
-     */
-    public function index()
-    {
-        return $this->json([
-            'message' => 'Welcome to your new controller!',
-            'path' => 'src/Controller/OrderController.php',
-        ]);
-    }
-
     /**
      * @Route("/order", name="add_order", methods={"POST"})
      */
@@ -96,6 +85,31 @@ class OrderController extends AbstractController
         $shippingType = $data['shipping_type'];
 
         /**
+         * validation block
+         */
+        $errors[] = $this->validator->validate($userId,
+            [
+                new Assert\Type(['type' => 'integer']),
+                new Assert\NotBlank()
+            ]);
+        $errors[] = $this->validator->validate($productsList,
+            [
+                new Assert\Type(['type' => 'array']),
+                new Assert\NotBlank()
+            ]);
+        $errors[] = $this->validator->validate($shippingType,
+            [
+                new Assert\Choice(['Express', 'Standard']),
+                new Assert\NotBlank()
+            ]);
+        if (count($errors) > 0) {
+            $errorMessages = [];
+            foreach ($errors as $error){
+                $errorMessages[] = (string)$error;
+            }
+            return new JsonResponse(['status' => 'Error!', 'errors'=> $errorMessages], Response::HTTP_BAD_REQUEST);
+        }
+        /**
          * prepare address
          */
         $this->addressComposer->loadAddressArray($address);
@@ -107,10 +121,9 @@ class OrderController extends AbstractController
 
         $address = $this->addressComposer->composeAdress();
 
-        if(!in_array($shippingType, ['Express', 'Standard'])){
-            return new JsonResponse(['status' => 'Error!', 'message' => "Incorrect shipping type"], Response::HTTP_NOT_FOUND);
-        }
-
+        /**
+         * checking users, products and balance
+         */
         $user = $this->userRepository->find($userId);
         if(!$user){
             return new JsonResponse(['status' => 'Error!', 'message' => "User not found"], Response::HTTP_NOT_FOUND);
@@ -139,7 +152,9 @@ class OrderController extends AbstractController
             return new JsonResponse(['status' => 'Error!', 'message' => "Insufficient funds"], Response::HTTP_PAYMENT_REQUIRED);
         }
 
-        //save all necessary data
+        /**
+         * save all necessary data
+         */
         $order = $this->orderRepository->saveOrder(
             $user,
             $address,
@@ -147,7 +162,6 @@ class OrderController extends AbstractController
             $totalCharge
         );
 
-        //save all products to order_products table
         foreach ($productsArray as $product){
             $this->orderProductRepository->saveOrderProduct($order, $product, $user);
         }
