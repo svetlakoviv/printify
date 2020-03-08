@@ -9,9 +9,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpKernel\Exception\NotAcceptableHttpException;
 use Symfony\Component\Routing\Annotation\Route;
-
+use Symfony\Component\Validator\Validator\ValidatorInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 class ProductController extends AbstractController
 {
@@ -28,15 +28,19 @@ class ProductController extends AbstractController
      */
     private $productTypeRepository;
 
+    private $validator;
+
     public function __construct(
         ProductRepository $productRepository,
         UserRepository $userRepository,
-        ProductTypeRepository $productTypeRepository
+        ProductTypeRepository $productTypeRepository,
+        ValidatorInterface $validator
     )
     {
         $this->productRepository = $productRepository;
         $this->userRepository = $userRepository;
         $this->productTypeRepository = $productTypeRepository;
+        $this->validator = $validator;
     }
 
     /**
@@ -52,22 +56,57 @@ class ProductController extends AbstractController
         $productTypeId = $data['product_type_id'];
         $userId = $data['user_id'];
 
-        if (!$sku || !$cost || !$title || !$productTypeId || !$userId ) {
-            throw new NotAcceptableHttpException('Argument is missing!');
+        /**
+         * validation block
+         */
+
+        $errors[] = $this->validator->validate($cost,
+            [
+                new Assert\Type(['type' => 'integer']),
+                new Assert\NotBlank()
+            ]);
+        $errors[] = $this->validator->validate($productTypeId,
+            [
+                new Assert\Type(['type' => 'integer']),
+                new Assert\NotBlank()
+            ]);
+        $errors[] = $this->validator->validate($userId,
+            [
+                new Assert\Type(['type' => 'integer']),
+                new Assert\NotBlank()
+            ]);
+        $errors[] = $this->validator->validate($sku,
+            [
+                new Assert\NotBlank()
+            ]);
+        $errors[] = $this->validator->validate($title,
+            [
+                new Assert\NotBlank()
+            ]);
+
+        $errorMessages = [];
+        foreach ($errors as $error){
+            if(count($error)>0){
+                $errorMessages[] = (string)$error;
+            }
         }
+        if(count($errorMessages)>0){
+            return new JsonResponse(['status' => 'Error!', 'errors' => $errorMessages], Response::HTTP_BAD_REQUEST);
+        }
+
 
         //validate user
         $user = $this->userRepository->find($userId);
-        if(!$user){
+        if (!$user) {
             return new JsonResponse(['status' => 'Error!', 'message' => "User not found"], Response::HTTP_NOT_FOUND);
         }
         //validate type
         $productType = $this->productTypeRepository->find($productTypeId);
-        if(!$productType){
+        if (!$productType) {
             return new JsonResponse(['status' => 'Error!', 'message' => "Product type not found"], Response::HTTP_NOT_FOUND);
         }
         //validate sku
-        if($this->productRepository->findOneBy(['SKU' => $sku])){
+        if ($this->productRepository->findOneBy(['SKU' => $sku])) {
             return new JsonResponse(['status' => 'Error!', 'message' => "This SKU is already in use"], Response::HTTP_NOT_ACCEPTABLE);
         }
 

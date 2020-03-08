@@ -81,7 +81,7 @@ class OrderController extends AbstractController
 
         $userId = $data['user_id'];
         $productsList = $data['products'];
-        $address  = $data['address'];
+        $address = $data['address'];
         $shippingType = $data['shipping_type'];
 
         /**
@@ -102,13 +102,17 @@ class OrderController extends AbstractController
                 new Assert\Choice(['Express', 'Standard']),
                 new Assert\NotBlank()
             ]);
-        if (count($errors) > 0) {
-            $errorMessages = [];
-            foreach ($errors as $error){
+
+        $errorMessages = [];
+        foreach ($errors as $error){
+            if(count($error)>0){
                 $errorMessages[] = (string)$error;
             }
-            return new JsonResponse(['status' => 'Error!', 'errors'=> $errorMessages], Response::HTTP_BAD_REQUEST);
         }
+        if(count($errorMessages)>0){
+            return new JsonResponse(['status' => 'Error!', 'errors' => $errorMessages], Response::HTTP_BAD_REQUEST);
+        }
+
         /**
          * prepare address
          */
@@ -116,7 +120,7 @@ class OrderController extends AbstractController
         $errors = $this->validator->validate($this->addressComposer);
 
         if (count($errors) > 0) {
-            return new JsonResponse(['status' => 'Error!', 'errors'=> (string)$errors], Response::HTTP_BAD_REQUEST);
+            return new JsonResponse(['status' => 'Error!', 'errors' => (string)$errors], Response::HTTP_BAD_REQUEST);
         }
 
         $address = $this->addressComposer->composeAdress();
@@ -125,14 +129,14 @@ class OrderController extends AbstractController
          * checking users, products and balance
          */
         $user = $this->userRepository->find($userId);
-        if(!$user){
+        if (!$user) {
             return new JsonResponse(['status' => 'Error!', 'message' => "User not found"], Response::HTTP_NOT_FOUND);
         }
 
         $productsArray = [];
-        foreach ($productsList as $productId){
+        foreach ($productsList as $productId) {
             $product = $this->productRepository->find($productId);
-            if(!$product){
+            if (!$product) {
                 return new JsonResponse(['status' => 'Error!', 'message' => "Product not found"], Response::HTTP_NOT_FOUND);
             }
 
@@ -140,7 +144,7 @@ class OrderController extends AbstractController
         }
 
         $adressType = $this->addressComposer->getAddressType();
-        if($adressType === 'International'){
+        if ($adressType === 'International') {
             return new JsonResponse(['status' => 'Error!', 'message' => "Express delivery is only for domestic orders"], Response::HTTP_EXPECTATION_FAILED);
         }
 
@@ -148,7 +152,7 @@ class OrderController extends AbstractController
         $totalCharge = $this->totalOrderCalculator->calculateTotalOrder($adressType, $productsArray, $express);
 
         //checking if user has enough money
-        if($user->getBalance()<$totalCharge){
+        if ($user->getBalance() < $totalCharge) {
             return new JsonResponse(['status' => 'Error!', 'message' => "Insufficient funds"], Response::HTTP_PAYMENT_REQUIRED);
         }
 
@@ -162,12 +166,12 @@ class OrderController extends AbstractController
             $totalCharge
         );
 
-        foreach ($productsArray as $product){
+        foreach ($productsArray as $product) {
             $this->orderProductRepository->saveOrderProduct($order, $product, $user);
         }
 
         //charge user
-        $newBalance = $user->getBalance()-$totalCharge;
+        $newBalance = $user->getBalance() - $totalCharge;
         $user->setBalance($newBalance);
         $this->userRepository->updateUser($user);
 
