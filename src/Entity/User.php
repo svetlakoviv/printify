@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -27,12 +28,12 @@ class User
     private $balance;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Product", mappedBy="UserId", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\Product", mappedBy="user", orphanRemoval=true)
      */
     private $product;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\PrintingOrder", mappedBy="UserId", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\PrintingOrder", mappedBy="user", orphanRemoval=true)
      */
     private $order;
 
@@ -65,7 +66,7 @@ class User
         return $this;
     }
 
-    public function getProduct(): ?Product
+    public function getProduct(): ?Collection
     {
         return $this->product;
     }
@@ -73,6 +74,18 @@ class User
     public function setProduct(?Product $product): self
     {
         $this->product = $product;
+
+        return $this;
+    }
+
+    public function getOrder(): ?Collection
+    {
+        return $this->order;
+    }
+
+    public function setOrder(?OrderProduct $order): self
+    {
+        $this->order = $order;
 
         return $this;
     }

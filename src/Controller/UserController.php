@@ -49,4 +49,48 @@ class UserController extends AbstractController
 
         return new JsonResponse(['status' => 'User created!', 'entity' => $user->asArray()], Response::HTTP_CREATED);
     }
+
+    /**
+     * @Route("/user/{userId}/products", name="get_products_for_user")
+     */
+    public function products($userId): JsonResponse
+    {
+        if (!$userId ) {
+            throw new NotAcceptableHttpException('Id is missing!');
+        }
+
+        $user = $this->userRepository->find($userId);
+        if(!$user){
+            return new JsonResponse(['status' => 'Error!', 'message' => "User not found"], Response::HTTP_NOT_FOUND);
+        }
+
+        $products = $user->getProduct();
+
+        foreach ($products as $product) {
+            $data[] = $product->asArray();
+        }
+        return $this->json($data);
+    }
+
+    /**
+     * @Route("/user/{userId}/orders", name="get_orders_for_user")
+     */
+    public function orders($userId): JsonResponse
+    {
+        if (!$userId ) {
+            throw new NotAcceptableHttpException('Id is missing!');
+        }
+
+        $user = $this->userRepository->find($userId);
+        if(!$user){
+            return new JsonResponse(['status' => 'Error!', 'message' => "User not found"], Response::HTTP_NOT_FOUND);
+        }
+
+        $orders = $user->getOrder();
+
+        foreach ($orders as $order) {
+            $data[] = $order->asArray();
+        }
+        return $this->json($data);
+    }
 }
