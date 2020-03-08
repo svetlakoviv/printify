@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class UserController extends AbstractController
 {
-    const INITIAL_BALANCE = 100;
+    const INITIAL_BALANCE = 10000;
     private $userRepository;
 
     public function __construct(UserRepository $userRepository)

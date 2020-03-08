@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\OrderProduct;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\ORM\EntityManagerInterface;
 
 /**
  * @method OrderProduct|null find($id, $lockMode = null, $lockVersion = null)
@@ -14,37 +15,30 @@ use Doctrine\Common\Persistence\ManagerRegistry;
  */
 class OrderProductRepository extends ServiceEntityRepository
 {
-    public function __construct(ManagerRegistry $registry)
+    /**
+     * @var EntityManagerInterface
+     */
+    private $manager;
+
+    public function __construct(ManagerRegistry $registry, EntityManagerInterface $manager)
     {
         parent::__construct($registry, OrderProduct::class);
+        $this->manager = $manager;
     }
 
-    // /**
-    //  * @return OrderProduct[] Returns an array of OrderProduct objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    public function saveOrderProduct($order, $product, $user):OrderProduct
     {
-        return $this->createQueryBuilder('o')
-            ->andWhere('o.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('o.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
+        $orderProduct = new OrderProduct();
 
-    /*
-    public function findOneBySomeField($value): ?OrderProduct
-    {
-        return $this->createQueryBuilder('o')
-            ->andWhere('o.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
+        $orderProduct
+            ->setPOrder($order)
+            ->setProduct($product)
+            ->setUser($user)
         ;
+
+        $this->manager->persist($orderProduct);
+        $this->manager->flush();
+
+        return $orderProduct;
     }
-    */
 }
