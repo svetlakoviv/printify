@@ -68,16 +68,20 @@ class OrderController extends AbstractController
         $shippingType = $data['shipping_type'];
 
         $adressType = $address['type'];
+        
         if($adressType === 'Domestic'){
             /**
              * Required
              * Full name
                 Address
                 Country
-                State
-                City
-                ZIP
                 Phone
+             * City
+             *
+                State
+
+                ZIP
+
              */
         }
         if($adressType === 'International'){
