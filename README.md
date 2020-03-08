@@ -79,8 +79,8 @@ Actually lots of stuff:
 1. table names are poor (like printing_order)
 2. more accurate validation for phone, city, etc
 3. contain all shipping prices separately in db
-4. more unit tests + functuonal
+4. more unit tests + functional
 5. to do something with code duplicates
 6. ...
 
-But I think that this is still pretty enough for a test.
+But I think that this state is still pretty enough for a test.
