@@ -19,15 +19,15 @@ bin/console doctrine:fixtures:load
 get list of users
 
 ### POST /user
-
+```
 {
   "name": "Ivan Svetlakov"
 }
-
+```
 Create new user
 
 ### POST /product
-
+```
 {
   "sku": "2",
   "cost": 100,
@@ -35,7 +35,7 @@ Create new user
   "product_type_id": 1,
   "user_id": 1
 }
-
+```
 create new product
 
 ### GET /user/{userId}/orders
@@ -47,6 +47,7 @@ Get list of orders for given user
 Get list of orders for given user
 
 ### POST /order
+```
 {
   "address": {
   	"type" : "Domestic",
@@ -62,6 +63,8 @@ Get list of orders for given user
   "user_id": 1,
   "products": [3,3,4]
 }
+```
+Create new order
 
 ## Run Unit tests
 
