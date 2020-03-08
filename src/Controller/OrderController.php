@@ -67,6 +67,37 @@ class OrderController extends AbstractController
         $address  = $data['address'];
         $shippingType = $data['shipping_type'];
 
+        $adressType = $address['type'];
+        if($adressType === 'Domestic'){
+            /**
+             * Required
+             * Full name
+                Address
+                Country
+                State
+                City
+                ZIP
+                Phone
+             */
+        }
+        if($adressType === 'International'){
+            /**
+             * Required:
+
+            Full name
+            Address
+            Country
+            Phone
+            City
+            Optional:
+
+            Region
+            ZIP
+             */
+        }
+
+        $address = json_encode($address);
+
         if(!in_array($shippingType, ['Express', 'Standard'])){
             return new JsonResponse(['status' => 'Error!', 'message' => "Incorrect shipping type"], Response::HTTP_NOT_FOUND);
         }
@@ -104,17 +135,32 @@ class OrderController extends AbstractController
         $shippingCost = 0;
         $count = count($productsList);
         if($shippingType === 'Express'){
+            if($adressType === 'International'){
+                return new JsonResponse(['status' => 'Error!', 'message' => "Express delivery is only for domestic orders"], Response::HTTP_EXPECTATION_FAILED);
+            }
             $shippingCost = 1000*$count;
         }
 
         if($shippingType === 'Standard'){
-            if($mugsCount){
-                $shippingCost += 200;
-                $shippingCost += 100*($mugsCount-1);
+            if($adressType === 'Domestic'){
+                if($mugsCount){
+                    $shippingCost += 200;
+                    $shippingCost += 100*($mugsCount-1);
+                }
+                if($tshirtsCount){
+                    $shippingCost += 100;
+                    $shippingCost += 50*($tshirtsCount-1);
+                }
             }
-            if($tshirtsCount){
-                $shippingCost += 100;
-                $shippingCost += 50*($tshirtsCount-1);
+            if($adressType === 'International'){
+                if($mugsCount){
+                    $shippingCost += 500;
+                    $shippingCost += 250*($mugsCount-1);
+                }
+                if($tshirtsCount){
+                    $shippingCost += 300;
+                    $shippingCost += 150*($tshirtsCount-1);
+                }
             }
         }
 
@@ -126,6 +172,8 @@ class OrderController extends AbstractController
             return new JsonResponse(['status' => 'Error!', 'message' => "Insufficient funds"], Response::HTTP_PAYMENT_REQUIRED);
         }
 
+
+        //save all necessary data
         $order = $this->orderRepository->saveOrder(
             $user,
             $address,
