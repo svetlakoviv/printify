@@ -4,13 +4,21 @@
 namespace App\Service;
 
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\GroupSequenceProviderInterface;
 
-class AddressComposer
+/**
+ * @Assert\GroupSequenceProvider()
+ */
+class AddressComposer implements GroupSequenceProviderInterface
 {
+    const INTERNATIONAL = 'International';
+    const DOMESTIC = 'Domestic';
+
     private $initialAddressArray;
 
     /**
      * @Assert\NotBlank
+     * @Assert\Choice({ AddressComposer::INTERNATIONAL, AddressComposer::DOMESTIC })
      */
     private $type;
 
@@ -30,7 +38,7 @@ class AddressComposer
     private $country;
 
     /**
-     * @Assert\NotBlank
+     * @Assert\NotBlank(groups = {"international"})
      */
     private $state;
 
@@ -40,7 +48,7 @@ class AddressComposer
     private $city;
 
     /**
-     * @Assert\NotBlank
+     * @Assert\NotNull(groups = {"domestic"})
      */
     private $zip;
 
@@ -50,7 +58,7 @@ class AddressComposer
     private $phone;
 
     /**
-     * @Assert\NotNull
+     * @Assert\NotNull(groups = {"domestic"})
      */
     private $region;
 
@@ -81,5 +89,13 @@ class AddressComposer
     public function getAddressType():string
     {
         return $this->type;
+    }
+
+    public function getGroupSequence()
+    {
+        return [
+            'AddressComposer',
+            $this->type === self::INTERNATIONAL ? 'international' : 'domestic',
+        ];
     }
 }

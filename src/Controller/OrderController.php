@@ -12,9 +12,8 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Validator\Constraints\Length;
-use Symfony\Component\Validator\Constraints\NotBlank;
-use Symfony\Component\Validator\Validation;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
+
 
 class OrderController extends AbstractController
 {
@@ -39,12 +38,15 @@ class OrderController extends AbstractController
 
     private $addressComposer;
 
+    private $validator;
+
     public function __construct(
         ProductRepository $productRepository,
         UserRepository $userRepository,
         OrderRepository $orderRepository,
         OrderProductRepository $orderProductRepository,
-        AddressComposer $addressComposer
+        AddressComposer $addressComposer,
+        ValidatorInterface $validator
     )
     {
         $this->productRepository = $productRepository;
@@ -52,6 +54,7 @@ class OrderController extends AbstractController
         $this->orderRepository = $orderRepository;
         $this->orderProductRepository = $orderProductRepository;
         $this->addressComposer = $addressComposer;
+        $this->validator = $validator;
     }
 
 
@@ -81,12 +84,11 @@ class OrderController extends AbstractController
         /**
          * prepare address
          */
-        //$this->addressComposer->loadAddressArray($address);
-        $validator = Validation::createValidator();
-        $errors = $validator->validate($this->addressComposer);
-        dump($errors); die();
+        $this->addressComposer->loadAddressArray($address);
+        $errors = $this->validator->validate($this->addressComposer);
+
         if (count($errors) > 0) {
-            return new JsonResponse(['status' => 'Error!', $errors], Response::HTTP_BAD_REQUEST);
+            return new JsonResponse(['status' => 'Error!', 'errors'=> (string)$errors], Response::HTTP_BAD_REQUEST);
         }
 
         $address = $this->addressComposer->composeAdress();
