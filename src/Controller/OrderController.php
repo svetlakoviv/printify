@@ -6,11 +6,15 @@ use App\Repository\OrderProductRepository;
 use App\Repository\OrderRepository;
 use App\Repository\ProductRepository;
 use App\Repository\UserRepository;
+use App\Service\AddressComposer;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Validator\Constraints\Length;
+use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Validation;
 
 class OrderController extends AbstractController
 {
@@ -28,19 +32,26 @@ class OrderController extends AbstractController
      */
     private $orderRepository;
 
+    /**
+     * @var OrderProductRepository
+     */
     private $orderProductRepository;
+
+    private $addressComposer;
 
     public function __construct(
         ProductRepository $productRepository,
         UserRepository $userRepository,
         OrderRepository $orderRepository,
-        OrderProductRepository $orderProductRepository
+        OrderProductRepository $orderProductRepository,
+        AddressComposer $addressComposer
     )
     {
         $this->productRepository = $productRepository;
         $this->userRepository = $userRepository;
         $this->orderRepository = $orderRepository;
         $this->orderProductRepository = $orderProductRepository;
+        $this->addressComposer = $addressComposer;
     }
 
 
@@ -67,40 +78,18 @@ class OrderController extends AbstractController
         $address  = $data['address'];
         $shippingType = $data['shipping_type'];
 
-        $adressType = $address['type'];
-        
-        if($adressType === 'Domestic'){
-            /**
-             * Required
-             * Full name
-                Address
-                Country
-                Phone
-             * City
-             *
-                State
-
-                ZIP
-
-             */
-        }
-        if($adressType === 'International'){
-            /**
-             * Required:
-
-            Full name
-            Address
-            Country
-            Phone
-            City
-            Optional:
-
-            Region
-            ZIP
-             */
+        /**
+         * prepare address
+         */
+        //$this->addressComposer->loadAddressArray($address);
+        $validator = Validation::createValidator();
+        $errors = $validator->validate($this->addressComposer);
+        dump($errors); die();
+        if (count($errors) > 0) {
+            return new JsonResponse(['status' => 'Error!', $errors], Response::HTTP_BAD_REQUEST);
         }
 
-        $address = json_encode($address);
+        $address = $this->addressComposer->composeAdress();
 
         if(!in_array($shippingType, ['Express', 'Standard'])){
             return new JsonResponse(['status' => 'Error!', 'message' => "Incorrect shipping type"], Response::HTTP_NOT_FOUND);
@@ -138,6 +127,7 @@ class OrderController extends AbstractController
         //shipping costs calculation
         $shippingCost = 0;
         $count = count($productsList);
+        $adressType = $this->addressComposer->getAddressType();
         if($shippingType === 'Express'){
             if($adressType === 'International'){
                 return new JsonResponse(['status' => 'Error!', 'message' => "Express delivery is only for domestic orders"], Response::HTTP_EXPECTATION_FAILED);
