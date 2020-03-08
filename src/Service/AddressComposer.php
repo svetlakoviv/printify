@@ -57,9 +57,6 @@ class AddressComposer implements GroupSequenceProviderInterface
      */
     private $phone;
 
-    /**
-     * @Assert\NotNull(groups = {"domestic"})
-     */
     private $region;
 
     public function loadAddressArray($addressArray)
