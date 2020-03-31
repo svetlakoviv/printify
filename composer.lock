@@ -1,10 +1,9 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "hash": "3e9dddc6e2866bc014dd6c005553b835",
     "content-hash": "875463e841b447603b5367e2b81c5287",
     "packages": [
         {
@@ -73,7 +72,7 @@
                 "docblock",
                 "parser"
             ],
-            "time": "2019-10-01 18:55:10"
+            "time": "2019-10-01T18:55:10+00:00"
         },
         {
             "name": "doctrine/cache",
@@ -155,7 +154,7 @@
                 "redis",
                 "xcache"
             ],
-            "time": "2019-11-29 15:36:20"
+            "time": "2019-11-29T15:36:20+00:00"
         },
         {
             "name": "doctrine/collections",
@@ -225,7 +224,7 @@
                 "iterators",
                 "php"
             ],
-            "time": "2019-11-13 13:07:11"
+            "time": "2019-11-13T13:07:11+00:00"
         },
         {
             "name": "doctrine/common",
@@ -308,7 +307,7 @@
                 "doctrine",
                 "php"
             ],
-            "time": "2020-01-10 15:49:25"
+            "time": "2020-01-10T15:49:25+00:00"
         },
         {
             "name": "doctrine/dbal",
@@ -400,7 +399,7 @@
                 "sqlserver",
                 "sqlsrv"
             ],
-            "time": "2020-01-04 12:56:21"
+            "time": "2020-01-04T12:56:21+00:00"
         },
         {
             "name": "doctrine/doctrine-bundle",
@@ -492,7 +491,7 @@
                 "orm",
                 "persistence"
             ],
-            "time": "2020-01-18 11:56:15"
+            "time": "2020-01-18T11:56:15+00:00"
         },
         {
             "name": "doctrine/doctrine-migrations-bundle",
@@ -560,7 +559,7 @@
                 "migrations",
                 "schema"
             ],
-            "time": "2019-11-13 12:57:41"
+            "time": "2019-11-13T12:57:41+00:00"
         },
         {
             "name": "doctrine/event-manager",
@@ -636,7 +635,7 @@
                 "event system",
                 "events"
             ],
-            "time": "2019-11-10 09:48:07"
+            "time": "2019-11-10T09:48:07+00:00"
         },
         {
             "name": "doctrine/inflector",
@@ -703,7 +702,7 @@
                 "singularize",
                 "string"
             ],
-            "time": "2019-10-30 19:59:35"
+            "time": "2019-10-30T19:59:35+00:00"
         },
         {
             "name": "doctrine/instantiator",
@@ -759,7 +758,7 @@
                 "constructor",
                 "instantiate"
             ],
-            "time": "2019-10-21 16:45:58"
+            "time": "2019-10-21T16:45:58+00:00"
         },
         {
             "name": "doctrine/lexer",
@@ -821,7 +820,7 @@
                 "parser",
                 "php"
             ],
-            "time": "2019-10-30 14:39:59"
+            "time": "2019-10-30T14:39:59+00:00"
         },
         {
             "name": "doctrine/migrations",
@@ -903,7 +902,7 @@
                 "migrations",
                 "php"
             ],
-            "time": "2019-12-04 06:09:14"
+            "time": "2019-12-04T06:09:14+00:00"
         },
         {
             "name": "doctrine/orm",
@@ -987,7 +986,7 @@
                 "database",
                 "orm"
             ],
-            "time": "2020-02-15 14:35:56"
+            "time": "2020-02-15T14:35:56+00:00"
         },
         {
             "name": "doctrine/persistence",
@@ -1070,7 +1069,7 @@
                 "orm",
                 "persistence"
             ],
-            "time": "2020-01-16 22:06:23"
+            "time": "2020-01-16T22:06:23+00:00"
         },
         {
             "name": "doctrine/reflection",
@@ -1148,7 +1147,7 @@
                 "reflection",
                 "static"
             ],
-            "time": "2020-01-08 19:53:19"
+            "time": "2020-01-08T19:53:19+00:00"
         },
         {
             "name": "fzaninotto/faker",
@@ -1198,7 +1197,7 @@
                 "faker",
                 "fixtures"
             ],
-            "time": "2019-12-12 13:22:17"
+            "time": "2019-12-12T13:22:17+00:00"
         },
         {
             "name": "jdorn/sql-formatter",
@@ -1248,7 +1247,7 @@
                 "highlight",
                 "sql"
             ],
-            "time": "2014-01-12 16:20:24"
+            "time": "2014-01-12T16:20:24+00:00"
         },
         {
             "name": "ocramius/package-versions",
@@ -1298,7 +1297,7 @@
                 }
             ],
             "description": "Composer plugin that provides efficient querying for installed package versions (no runtime IO)",
-            "time": "2019-11-15 16:17:10"
+            "time": "2019-11-15T16:17:10+00:00"
         },
         {
             "name": "ocramius/proxy-manager",
@@ -1368,7 +1367,7 @@
                 "proxy pattern",
                 "service proxies"
             ],
-            "time": "2019-08-10 08:37:15"
+            "time": "2019-08-10T08:37:15+00:00"
         },
         {
             "name": "psr/cache",
@@ -1414,7 +1413,7 @@
                 "psr",
                 "psr-6"
             ],
-            "time": "2016-08-06 20:24:11"
+            "time": "2016-08-06T20:24:11+00:00"
         },
         {
             "name": "psr/container",
@@ -1463,7 +1462,7 @@
                 "container-interop",
                 "psr"
             ],
-            "time": "2017-02-14 16:28:37"
+            "time": "2017-02-14T16:28:37+00:00"
         },
         {
             "name": "psr/event-dispatcher",
@@ -1509,7 +1508,7 @@
                 "psr",
                 "psr-14"
             ],
-            "time": "2019-01-08 18:20:26"
+            "time": "2019-01-08T18:20:26+00:00"
         },
         {
             "name": "psr/log",
@@ -1556,7 +1555,7 @@
                 "psr",
                 "psr-3"
             ],
-            "time": "2019-11-01 11:05:21"
+            "time": "2019-11-01T11:05:21+00:00"
         },
         {
             "name": "sensio/framework-extra-bundle",
@@ -1634,7 +1633,7 @@
                 "annotations",
                 "controllers"
             ],
-            "time": "2019-12-27 08:57:19"
+            "time": "2019-12-27T08:57:19+00:00"
         },
         {
             "name": "symfony/cache",
@@ -1713,7 +1712,7 @@
                 "caching",
                 "psr6"
             ],
-            "time": "2020-02-24 15:05:31"
+            "time": "2020-02-24T15:05:31+00:00"
         },
         {
             "name": "symfony/cache-contracts",
@@ -1771,7 +1770,7 @@
                 "interoperability",
                 "standards"
             ],
-            "time": "2019-11-18 17:27:11"
+            "time": "2019-11-18T17:27:11+00:00"
         },
         {
             "name": "symfony/config",
@@ -1835,7 +1834,7 @@
             ],
             "description": "Symfony Config Component",
             "homepage": "https://symfony.com",
-            "time": "2020-02-04 09:41:09"
+            "time": "2020-02-04T09:41:09+00:00"
         },
         {
             "name": "symfony/console",
@@ -1911,7 +1910,7 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
-            "time": "2020-02-24 15:05:31"
+            "time": "2020-02-24T15:05:31+00:00"
         },
         {
             "name": "symfony/dependency-injection",
@@ -1984,7 +1983,7 @@
             ],
             "description": "Symfony DependencyInjection Component",
             "homepage": "https://symfony.com",
-            "time": "2020-02-24 15:05:31"
+            "time": "2020-02-24T15:05:31+00:00"
         },
         {
             "name": "symfony/doctrine-bridge",
@@ -2080,7 +2079,7 @@
             ],
             "description": "Symfony Doctrine Bridge",
             "homepage": "https://symfony.com",
-            "time": "2020-02-25 14:24:11"
+            "time": "2020-02-25T14:24:11+00:00"
         },
         {
             "name": "symfony/dotenv",
@@ -2137,7 +2136,7 @@
                 "env",
                 "environment"
             ],
-            "time": "2020-02-29 10:07:09"
+            "time": "2020-02-29T10:07:09+00:00"
         },
         {
             "name": "symfony/error-handler",
@@ -2192,7 +2191,7 @@
             ],
             "description": "Symfony ErrorHandler Component",
             "homepage": "https://symfony.com",
-            "time": "2020-02-29 10:07:09"
+            "time": "2020-02-29T10:07:09+00:00"
         },
         {
             "name": "symfony/event-dispatcher",
@@ -2262,7 +2261,7 @@
             ],
             "description": "Symfony EventDispatcher Component",
             "homepage": "https://symfony.com",
-            "time": "2020-02-22 20:09:08"
+            "time": "2020-02-22T20:09:08+00:00"
         },
         {
             "name": "symfony/event-dispatcher-contracts",
@@ -2320,7 +2319,7 @@
                 "interoperability",
                 "standards"
             ],
-            "time": "2019-11-18 17:27:11"
+            "time": "2019-11-18T17:27:11+00:00"
         },
         {
             "name": "symfony/filesystem",
@@ -2370,7 +2369,7 @@
             ],
             "description": "Symfony Filesystem Component",
             "homepage": "https://symfony.com",
-            "time": "2020-01-21 08:40:24"
+            "time": "2020-01-21T08:40:24+00:00"
         },
         {
             "name": "symfony/finder",
@@ -2419,7 +2418,7 @@
             ],
             "description": "Symfony Finder Component",
             "homepage": "https://symfony.com",
-            "time": "2020-02-14 07:43:07"
+            "time": "2020-02-14T07:43:07+00:00"
         },
         {
             "name": "symfony/flex",
@@ -2468,7 +2467,7 @@
                 }
             ],
             "description": "Composer plugin for Symfony",
-            "time": "2020-01-30 12:06:45"
+            "time": "2020-01-30T12:06:45+00:00"
         },
         {
             "name": "symfony/framework-bundle",
@@ -2598,20 +2597,20 @@
             ],
             "description": "Symfony FrameworkBundle",
             "homepage": "https://symfony.com",
-            "time": "2020-02-29 10:07:09"
+            "time": "2020-02-29T10:07:09+00:00"
         },
         {
             "name": "symfony/http-foundation",
-            "version": "v5.0.5",
+            "version": "v5.0.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/http-foundation.git",
-                "reference": "6f9c2ba72f4295d7ce6cf9f79dbb18036291d335"
+                "reference": "26fb006a2c7b6cdd23d52157b05f8414ffa417b6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/http-foundation/zipball/6f9c2ba72f4295d7ce6cf9f79dbb18036291d335",
-                "reference": "6f9c2ba72f4295d7ce6cf9f79dbb18036291d335",
+                "url": "https://api.github.com/repos/symfony/http-foundation/zipball/26fb006a2c7b6cdd23d52157b05f8414ffa417b6",
+                "reference": "26fb006a2c7b6cdd23d52157b05f8414ffa417b6",
                 "shasum": ""
             },
             "require": {
@@ -2653,7 +2652,7 @@
             ],
             "description": "Symfony HttpFoundation Component",
             "homepage": "https://symfony.com",
-            "time": "2020-02-14 07:43:07"
+            "time": "2020-03-30T14:14:32+00:00"
         },
         {
             "name": "symfony/http-kernel",
@@ -2749,20 +2748,20 @@
             ],
             "description": "Symfony HttpKernel Component",
             "homepage": "https://symfony.com",
-            "time": "2020-02-29 10:41:30"
+            "time": "2020-02-29T10:41:30+00:00"
         },
         {
             "name": "symfony/mime",
-            "version": "v5.0.5",
+            "version": "v5.0.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/mime.git",
-                "reference": "9b3e5b5e58c56bbd76628c952d2b78556d305f3c"
+                "reference": "481b7d6da88922fb1e0d86a943987722b08f3955"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/mime/zipball/9b3e5b5e58c56bbd76628c952d2b78556d305f3c",
-                "reference": "9b3e5b5e58c56bbd76628c952d2b78556d305f3c",
+                "url": "https://api.github.com/repos/symfony/mime/zipball/481b7d6da88922fb1e0d86a943987722b08f3955",
+                "reference": "481b7d6da88922fb1e0d86a943987722b08f3955",
                 "shasum": ""
             },
             "require": {
@@ -2811,7 +2810,7 @@
                 "mime",
                 "mime-type"
             ],
-            "time": "2020-02-04 09:41:09"
+            "time": "2020-03-27T16:56:45+00:00"
         },
         {
             "name": "symfony/orm-pack",
@@ -2838,20 +2837,20 @@
                 "MIT"
             ],
             "description": "A pack for the Doctrine ORM",
-            "time": "2020-02-10 18:03:48"
+            "time": "2020-02-10T18:03:48+00:00"
         },
         {
             "name": "symfony/polyfill-intl-idn",
-            "version": "v1.14.0",
+            "version": "v1.15.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-intl-idn.git",
-                "reference": "6842f1a39cf7d580655688069a03dd7cd83d244a"
+                "reference": "47bd6aa45beb1cd7c6a16b7d1810133b728bdfcf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-intl-idn/zipball/6842f1a39cf7d580655688069a03dd7cd83d244a",
-                "reference": "6842f1a39cf7d580655688069a03dd7cd83d244a",
+                "url": "https://api.github.com/repos/symfony/polyfill-intl-idn/zipball/47bd6aa45beb1cd7c6a16b7d1810133b728bdfcf",
+                "reference": "47bd6aa45beb1cd7c6a16b7d1810133b728bdfcf",
                 "shasum": ""
             },
             "require": {
@@ -2865,7 +2864,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.14-dev"
+                    "dev-master": "1.15-dev"
                 }
             },
             "autoload": {
@@ -2900,20 +2899,20 @@
                 "portable",
                 "shim"
             ],
-            "time": "2020-01-17 12:01:36"
+            "time": "2020-03-09T19:04:49+00:00"
         },
         {
             "name": "symfony/polyfill-mbstring",
-            "version": "v1.14.0",
+            "version": "v1.15.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-mbstring.git",
-                "reference": "34094cfa9abe1f0f14f48f490772db7a775559f2"
+                "reference": "81ffd3a9c6d707be22e3012b827de1c9775fc5ac"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/34094cfa9abe1f0f14f48f490772db7a775559f2",
-                "reference": "34094cfa9abe1f0f14f48f490772db7a775559f2",
+                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/81ffd3a9c6d707be22e3012b827de1c9775fc5ac",
+                "reference": "81ffd3a9c6d707be22e3012b827de1c9775fc5ac",
                 "shasum": ""
             },
             "require": {
@@ -2925,7 +2924,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.14-dev"
+                    "dev-master": "1.15-dev"
                 }
             },
             "autoload": {
@@ -2959,7 +2958,7 @@
                 "portable",
                 "shim"
             ],
-            "time": "2020-01-13 11:15:53"
+            "time": "2020-03-09T19:04:49+00:00"
         },
         {
             "name": "symfony/polyfill-php73",
@@ -3017,7 +3016,7 @@
                 "portable",
                 "shim"
             ],
-            "time": "2020-01-13 11:15:53"
+            "time": "2020-01-13T11:15:53+00:00"
         },
         {
             "name": "symfony/routing",
@@ -3093,7 +3092,7 @@
                 "uri",
                 "url"
             ],
-            "time": "2020-02-25 14:24:11"
+            "time": "2020-02-25T14:24:11+00:00"
         },
         {
             "name": "symfony/service-contracts",
@@ -3151,7 +3150,7 @@
                 "interoperability",
                 "standards"
             ],
-            "time": "2019-11-18 17:27:11"
+            "time": "2019-11-18T17:27:11+00:00"
         },
         {
             "name": "symfony/stopwatch",
@@ -3201,7 +3200,7 @@
             ],
             "description": "Symfony Stopwatch Component",
             "homepage": "https://symfony.com",
-            "time": "2020-01-04 14:08:26"
+            "time": "2020-01-04T14:08:26+00:00"
         },
         {
             "name": "symfony/translation-contracts",
@@ -3258,7 +3257,7 @@
                 "interoperability",
                 "standards"
             ],
-            "time": "2019-11-18 17:27:11"
+            "time": "2019-11-18T17:27:11+00:00"
         },
         {
             "name": "symfony/validator",
@@ -3351,7 +3350,7 @@
             ],
             "description": "Symfony Validator Component",
             "homepage": "https://symfony.com",
-            "time": "2020-02-29 10:07:09"
+            "time": "2020-02-29T10:07:09+00:00"
         },
         {
             "name": "symfony/var-dumper",
@@ -3426,7 +3425,7 @@
                 "debug",
                 "dump"
             ],
-            "time": "2020-02-26 22:30:10"
+            "time": "2020-02-26T22:30:10+00:00"
         },
         {
             "name": "symfony/var-exporter",
@@ -3486,7 +3485,7 @@
                 "instantiate",
                 "serialize"
             ],
-            "time": "2020-02-04 09:47:34"
+            "time": "2020-02-04T09:47:34+00:00"
         },
         {
             "name": "symfony/yaml",
@@ -3545,7 +3544,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2020-02-03 13:51:17"
+            "time": "2020-02-03T13:51:17+00:00"
         },
         {
             "name": "zendframework/zend-code",
@@ -3603,7 +3602,7 @@
                 "zf"
             ],
             "abandoned": "laminas/laminas-code",
-            "time": "2019-12-10 19:21:15"
+            "time": "2019-12-10T19:21:15+00:00"
         },
         {
             "name": "zendframework/zend-eventmanager",
@@ -3658,7 +3657,7 @@
                 "zf2"
             ],
             "abandoned": "laminas/laminas-eventmanager",
-            "time": "2018-04-25 15:33:34"
+            "time": "2018-04-25T15:33:34+00:00"
         }
     ],
     "packages-dev": [
@@ -3724,7 +3723,7 @@
             "keywords": [
                 "database"
             ],
-            "time": "2020-01-17 11:11:28"
+            "time": "2020-01-17T11:11:28+00:00"
         },
         {
             "name": "doctrine/doctrine-fixtures-bundle",
@@ -3791,7 +3790,7 @@
                 "Fixture",
                 "persistence"
             ],
-            "time": "2019-11-13 15:46:58"
+            "time": "2019-11-13T15:46:58+00:00"
         },
         {
             "name": "nikic/php-parser",
@@ -3843,7 +3842,7 @@
                 "parser",
                 "php"
             ],
-            "time": "2019-11-08 13:50:10"
+            "time": "2019-11-08T13:50:10+00:00"
         },
         {
             "name": "symfony/maker-bundle",
@@ -3911,7 +3910,7 @@
                 "scaffold",
                 "scaffolding"
             ],
-            "time": "2020-03-04 13:57:29"
+            "time": "2020-03-04T13:57:29+00:00"
         },
         {
             "name": "symfony/phpunit-bridge",
@@ -3976,7 +3975,7 @@
             ],
             "description": "Symfony PHPUnit Bridge",
             "homepage": "https://symfony.com",
-            "time": "2020-02-24 15:05:31"
+            "time": "2020-02-24T15:05:31+00:00"
         }
     ],
     "aliases": [],
